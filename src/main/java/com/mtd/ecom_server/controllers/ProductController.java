@@ -35,12 +35,13 @@ public class ProductController {
 		log.info("Fetching the products");
 		return productRepo.findAll();
 	}
+	@Tag(name = "Add Product")
 	@PostMapping("/add")
 	public Product addProduct(@RequestBody Product newproduct) {
 		log.info("Adding new product"+newproduct);
 		return productRepo.save(newproduct);
 	}
-	
+	@Tag(name = "Delete Products")
 	@DeleteMapping("/product/delete/{id}")
 	public String deleteProduct(@PathVariable String id) {
 	Optional<Product> findproduct  = productRepo.findById(id);
@@ -52,7 +53,7 @@ public class ProductController {
 
 		return "Product Deleted ";
 	}
-	
+	@Tag(name = "Edit Products")
 	@PutMapping ("/product/edit/{id}")
 	public Product editPorduct(@PathVariable String id, @RequestBody Product newproduct) {
 		Product findproduct = productRepo.findById(id).get();
