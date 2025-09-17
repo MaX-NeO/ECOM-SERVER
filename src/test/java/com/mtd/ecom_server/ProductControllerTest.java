@@ -23,7 +23,7 @@ public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Autowired
     private ProductRepo repo;
 
     @Test
