@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mtd.ecom_server.models.Product;
 import com.mtd.ecom_server.repos.ProductRepo;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/products")
@@ -27,6 +29,7 @@ public class ProductController {
 	
 	@Autowired ProductRepo productRepo;
 	
+	@Tag(name = "Get All Products")
 	@GetMapping("/all")
 	public List<Product> getAllProducts() {
 		log.info("fetching products");
