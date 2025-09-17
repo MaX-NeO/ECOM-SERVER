@@ -1,17 +1,15 @@
 package com.mtd.ecom_server;
 
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mtd.ecom_server.controllers.ProductController;
 import com.mtd.ecom_server.models.Product;
@@ -39,7 +37,7 @@ public class ProductControllerTest {
 
         when(repo.findAll()).thenReturn(List.of(product));
 
-        mockMvc.perform(get("/products"))
+        mockMvc.perform(get("/products/all"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Laptop"));
     }
