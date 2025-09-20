@@ -41,11 +41,17 @@ public class UserController {
 	        private String uid;
 	        private String email;
 	        private String role;
-	        public SignupResponse(String name,String uid, String email, String role) {
+	        private String street;
+	        private String city;
+	        private String zip;
+	        public SignupResponse(String name,String uid, String email, String role, String street,String city,String zip) {
 	            this.name=name;
 	            this.uid = uid;
 	            this.email = email;
 	            this.role = role;
+	            this.street=street;
+	            this.city=city;
+	            this.zip=zip;
 
 	        }
 
@@ -53,6 +59,10 @@ public class UserController {
 	        public String getUid() { return uid; }
 	        public String getEmail() { return email; }
 	        public String getRole() { return role; }
+	        public String getStreet() {return street;}
+	        public String getCity() {return city;}
+	        public String getZip() {return zip;}
+	        
 	 }
 	@Tag(name = "Signup (Static)") 
     @PostMapping("/signup")
@@ -74,7 +84,7 @@ public class UserController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new SignupResponse(savedUser.getName(),savedUser.getId(), savedUser.getEmail(), savedUser.getRoles().toString()));
+                .body(new SignupResponse(savedUser.getName(),savedUser.getId(), savedUser.getEmail(), savedUser.getRoles().toString(), savedUser.getStreet(),savedUser.getCity(),savedUser.getZip()));
     }
 	@Tag(name = "Login (Static)")
     @PostMapping("/login")
@@ -94,7 +104,7 @@ public class UserController {
         }
 
         return ResponseEntity.ok(
-                new SignupResponse(user.getName(),user.getId(), user.getEmail(), user.getRoles().toString())
+                new SignupResponse(user.getName(),user.getId(), user.getEmail(), user.getRoles().toString(),user.getStreet(),user.getCity(),user.getZip())
         );
     }
 	
